@@ -11,6 +11,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "shared/navbar" %>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-4 mt-5">
+        <%= yield %>
+        </div>
+      </div>
+    </div>
+    <%= render "shared/flashes" %>
   </body>
 </html>
