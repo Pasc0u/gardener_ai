@@ -1,1 +1,12 @@
 <h1>this is the show page of a plant</h1>
+
+<%= simple_form_for [@plant, @chat] do |f| %>
+  <%= f.submit "Ask Gardener for advice", class: "btn btn-primary" %>
+<% end %>
+
+<p><strong>Latest chats</strong></p>
+<ul class="list-group">
+  <% @plant.chats.each do |chat| %>
+    <li class="list-group-item"><%= chat.topic %></li>
+  <% end %>
+</ul>

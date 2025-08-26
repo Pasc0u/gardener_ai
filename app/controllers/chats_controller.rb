@@ -1,15 +1,15 @@
 class ChatsController < ApplicationController
-  def index
-    chats = Chat.all
-    plant = Plant.find(params[:plant_id])
-  end
-
-  def new
-    plant = Plant.find(params[:plant_id])
-    chat = Chat.new
-  end
 
   def create
-    # chat = Chat.new(topic: "unknown", params[:plant_id])
+    @plant = Plant.find(params[:plant_id])
+    @chat = Chat.new(topic: "unkown")
+    @chat.plant = @plant
+    @chat.save
+    redirect_to chat_path(@chat)
+  end
+
+  def show
+    @plant = Plant.find(params[:plant_id])
+    @chat = Chat.find(params[:id])
   end
 end
