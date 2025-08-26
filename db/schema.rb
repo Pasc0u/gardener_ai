@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_26_133042) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_26_134046) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chats", force: :cascade do |t|
+    t.string "topic"
+    t.bigint "plant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plant_id"], name: "index_chats_on_plant_id"
+  end
 
   create_table "plants", force: :cascade do |t|
     t.string "nickname"
@@ -41,5 +49,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_26_133042) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "chats", "plants"
   add_foreign_key "plants", "users"
 end
