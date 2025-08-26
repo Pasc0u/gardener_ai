@@ -8,4 +8,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root to: "pages#home"
+  get "plants/:plant_id/chats", to: "chats#index"
+  get "plants/:plant_id/chats/new", to: "chats#new"
+  post "plants/:plant_id/chats", to: "chats#create"
 end
