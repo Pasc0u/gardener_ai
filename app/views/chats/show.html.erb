@@ -13,6 +13,10 @@
   <p>
     <strong><%= message.role %></strong>
     <%= message.content %>
+    <% if message.file.attached? %>
+      <strong>File:</strong>
+      <%= link_to message.file.filename, rails_blob_path(message.file, disposition: "attachment") %>
+    <% end %>
   </p>
 <% end %>
 
