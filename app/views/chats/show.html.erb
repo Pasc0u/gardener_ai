@@ -1,2 +1,16 @@
 <h1> <%= @chat.topic %> </h1>
-<h2> </h2>
+<h1><%= @chat.plant %></h1>
+
+<div class="mt-3">
+  <%= simple_form_for [@chat, @message] do |f| %>
+    <%= f.input :content, placeholder: "Ask a question", required: true %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<% @chat.messages.each do |message| %>
+  <p>
+    <strong><%= message.role %></strong>
+    <%= raw(render_markdown(message.content)) %>
+  </p>
+<% end %>
