@@ -9,7 +9,7 @@ class ChatsController < ApplicationController
   end
 
   def show
-    @plant = Plant.find(params[:plant_id])
     @chat = Chat.find(params[:id])
+    @chat.plant = @plant
   end
 end
