@@ -1,7 +1,8 @@
 class PlantsController < ApplicationController
 
   def index
-    @plants = Plant.all
+    @plants = current_user.plants
+    @garden_name = current_user.garden
   end
 
   def show
