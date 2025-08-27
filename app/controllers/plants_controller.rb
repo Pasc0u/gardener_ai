@@ -6,8 +6,10 @@ class PlantsController < ApplicationController
 
   def show
     @plant = Plant.find(params[:id])
+    @chat = Chat.new
+    @chats = Chat.all
   end
-  
+
   def new
     @plant = Plant.new
   end
