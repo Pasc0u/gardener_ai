@@ -10,13 +10,11 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :plants, only: [:index, :new, :create, :show] do
     resources :chats, only: [:create]
+    # info: chats#index and chats#new inside plants#show
   end
   resources :chats, only: [:show] do
     resources :messages, only: [:index, :new, :create]
+    # message#index and message#new actually inside chats#show -> can be deleted and this line turned into info
   end
-  # post "plants/:plant_id/chats", to: "chats#create"
-  # get "chats/:id", to: "chats#show", as: :chat
-  # get "chats/:chat_id/messages", to: "messages#index"
-  # get "chats/:chat_id/messages/new", to: "messages#new",
-  # post "chats/:id/messages", to: "messages#create"
+
 end

@@ -8,7 +8,7 @@ class PlantsController < ApplicationController
   def show
     @plant = Plant.find(params[:id])
     @chat = Chat.new
-    @chats = Chat.all
+    @chats = Chat.where(plant: @plant)
   end
 
   def new

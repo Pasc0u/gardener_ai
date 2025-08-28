@@ -1,5 +1,5 @@
 <h1> Chat about <%= @chat.topic %> </h1>
-<h1> for <%= @chat.plant.species %></h1>
+<h1> for <%= @plant.species %></h1>
 
 <div class="mt-3">
   <%= simple_form_for [@chat, @message] do |f| %>
@@ -20,5 +20,5 @@
   </p>
 <% end %>
 
-<%= link_to "Go back to your plant", plant_path(@chat.plant) %>
+<%= link_to "Go back to your plant", plant_path(@plant) %>
 <%# displaying @messages later on %>
