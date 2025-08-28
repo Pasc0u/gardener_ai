@@ -25,9 +25,14 @@ class PlantsController < ApplicationController
     end
   end
 
-
   def edit
     @plant = Plant.find(params[:id])
+  end
+
+  def destroy
+    @plant = Plant.find(params[:id])
+    @plant.destroy
+    redirect_to plants_path, status: :see_other
   end
 
   private

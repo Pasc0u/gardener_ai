@@ -10,6 +10,7 @@
             Location: <%= @plant.location %><br>
             Potted? <%= @plant.is_potted ? "Yes" : "No" %>
             <div><%= link_to "Edit plant details", edit_plant_path%></div>
+            <div><%= link_to "Delete plant", plant_path(@plant), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete your #{@plant.nickname}?"} %></div>
           </p>
         </div>
       </div>
