@@ -9,6 +9,7 @@
           <p><span style='font-weight: bolder'>Details</span><br>
             Location: <%= @plant.location %><br>
             Potted? <%= @plant.is_potted ? "Yes" : "No" %>
+            <div><%= link_to "Edit plant details", edit_plant_path%></div>
           </p>
         </div>
       </div>
