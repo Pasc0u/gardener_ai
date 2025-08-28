@@ -5,6 +5,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .card-product img {
@@ -29,4 +30,16 @@
 
 .card-product .card-product-infos {
   padding: 16px;
+}
+
+.card-product-infos .card-product-delete {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 24px;
+}
+
+a {
+  text-decoration: none;
+  color: $brand-deep-green;
 }
