@@ -21,7 +21,7 @@ Answer concisely in markdown."
       Message.create(role: "assistant", content: @response.content, chat: @chat)
       redirect_to chat_path(@chat)
     else
-      render :new, status: :unprocessable_entity
+      render "chats/show", status: :unprocessable_entity
     end
   end
 
