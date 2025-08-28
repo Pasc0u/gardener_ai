@@ -9,6 +9,7 @@
         <p><span style='text-decoration: underline'>Details</span><br>
           Location: <%= plant.location %><br>
           Potted? <%= plant.is_potted %>
+          <div><%= link_to "Delete plant", plant_path(plant), data: {turbo_method: :delete, turbo_confirm: "Do you want to delete your #{plant.nickname}?"} %></div>
         </p>
       </div>
   </div>
