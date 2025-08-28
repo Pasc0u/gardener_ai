@@ -23,12 +23,16 @@
 </div>
 
 <div class='mt-3'>
-  <p><strong>Latest chats</strong></p>
-  <ul class="list-group">
-    <% @plant.chats.each do |chat| %>
-      <li class="list-group-item"><%= link_to chat.topic, chat_path(chat) %></li>
+  <% if @chats.any? %>
+    <p><strong>Latest chats</strong></p>
+    <ul class="list-group">
+      <% @plant.chats.each do |chat| %>
+        <li class="list-group-item"><%= link_to chat.topic, chat_path(chat) %></li>
+      <% end %>
+    </ul>
+    <% else %>
+      <p>There are no chats yet.</p>
     <% end %>
-  </ul>
 </div>
 
 <%= link_to "Back to all plants", plants_path%>

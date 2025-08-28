@@ -1,9 +1,11 @@
 class Message < ApplicationRecord
+  acts_as_message
+  
   belongs_to :chat
   has_one :plant, through: :chat
   has_one_attached :file
 
-  validates :content, :role, presence: true
+  validates :role, presence: true
 
   validate :file_size_validation
   validates :content, length: { minimum: 10, maximum: 1000 }, if: -> { role == "user" }
