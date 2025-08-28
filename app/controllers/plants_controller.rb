@@ -25,6 +25,19 @@ class PlantsController < ApplicationController
     end
   end
 
+  def edit
+    @plant = Plant.find(params[:id])
+  end
+
+  def update
+    @plant = Plant.find(params[:id])
+    if @plant.update(plant_params)
+      redirect_to plant_path(@plant)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @plant = Plant.find(params[:id])
     @plant.destroy
