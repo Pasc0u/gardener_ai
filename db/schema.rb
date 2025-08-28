@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_27_104900) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_28_123117) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_27_104900) do
     t.bigint "plant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "model_id", default: "gpt-4.1-nano"
     t.index ["plant_id"], name: "index_chats_on_plant_id"
   end
 
