@@ -53,6 +53,10 @@ gem "sassc-rails"
 gem "ruby_llm"
 gem "cloudinary"
 
+gem "kramdown"
+gem "rouge"
+gem "kramdown-parser-gfm"
+
 # Gemfile
 gem "devise"
 
