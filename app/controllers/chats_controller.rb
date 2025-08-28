@@ -2,7 +2,7 @@ class ChatsController < ApplicationController
 
   def create
     @plant = Plant.find(params[:plant_id])
-    @chat = Chat.new(topic: "unkown", model_id: "gpt-4.1-nano")
+    @chat = Chat.new(topic: "unknown", model_id: "gpt-4.1-nano")
     @chat.plant = @plant
     if @chat.save
       redirect_to chat_path(@chat)

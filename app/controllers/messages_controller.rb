@@ -20,6 +20,9 @@ Answer concisely in markdown."
       else
         @chat.with_instructions(instructions).ask(@message.content)
       end
+      if @chat.topic == "unknown"
+        @chat.generate_topic_from_first_message
+      end
       redirect_to chat_path(@chat)
     else
       render "chats/show", status: :unprocessable_entity
