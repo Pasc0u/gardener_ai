@@ -12,13 +12,14 @@ Answer concisely in markdown."
     @message = Message.new(message_params)
     @message.role = "user"
     @message.chat = @chat
-    if @message.save
+    @plant = @chat.plant
+    if @message.valid?
       if @message.file.attached?
+        @message.save
         process_file(@message.file)
       else
-        send_question
+        @chat.with_instructions(instructions).ask(@message.content)
       end
-      Message.create(role: "assistant", content: @response.content, chat: @chat)
       redirect_to chat_path(@chat)
     else
       render "chats/show", status: :unprocessable_entity
@@ -27,9 +28,25 @@ Answer concisely in markdown."
 
   private
 
-  def send_question(model: "gpt-4.1-nano", with: {})
+  def send_question(model: "", with: {})
     @LLMchat = RubyLLM.chat(model: model)
     @response = @LLMchat.with_instructions(SYSTEM_PROMPT).ask(@message.content, with: with)
+  end
+
+  def instructions
+    [SYSTEM_PROMPT, plant_infos].compact.join("\n\n")
+  end
+
+  def plant_infos
+    "Here are additional informations on the plant:
+    
+    Species: #{@plant.species};
+    
+    Location; #{@plant.location};
+    
+    Is the plant potted? #{@plant.is_potted};
+    
+    optional age: #{@plant.age}"
   end
 
   def process_file(file)

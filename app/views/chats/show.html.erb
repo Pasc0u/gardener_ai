@@ -11,7 +11,7 @@
       <div class="d-flex justify-content-end mb-2">
         <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
           <%= raw(render_markdown(message.content)) %>
-          <% if message.file.attached? %>
+          <% if message.file.attached? %> 
             <strong>File:</strong>
             <%= link_to message.file.filename, rails_blob_path(message.file, disposition: "attachment") %>
           <% end %>
