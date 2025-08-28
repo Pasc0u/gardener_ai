@@ -1,11 +1,15 @@
-<h1> Chat about <%= @chat.topic %> </h1>
+<div id="chat_topic">
+  <h1> Chat about <%= @chat.topic %> </h1>
+</div>
 <h1> for <%= @plant.species %></h1>
 
-<div class="mt-3">
+<%= link_to "Go back to your plant", plant_path(@plant) %>
+
+<div id="new_message" class="mt-3">
   <%= simple_form_for [@chat, @message] do |f| %>
-    <%= f.input :content, placeholder: "Ask a question", required: true %>
-    <%= f.input :file, as: :file %>
-    <%= f.submit "Submit", class: "btn btn-primary" %>
+    <%= f.input :content, placeholder: "Ask a question", required: true, label: false %>
+    <%= f.input :file, as: :file, label: false %>
+    <%= f.submit "Ask", class: "btn btn-primary" %>
   <% end %>
 </div>
 
@@ -19,6 +23,3 @@
     <% end %>
   </p>
 <% end %>
-
-<%= link_to "Go back to your plant", plant_path(@plant) %>
-<%# displaying @messages later on %>
