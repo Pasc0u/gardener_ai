@@ -39,7 +39,7 @@ Answer concisely in markdown."
 
   def send_question(model: "", with: {})
     @LLMchat = RubyLLM.chat(model: model)
-    @response = @LLMchat.with_instructions(SYSTEM_PROMPT).ask(@message.content, with: with)
+    @response = @LLMchat.with_instructions(instructions).ask(@message.content, with: with)
   end
 
   def instructions
