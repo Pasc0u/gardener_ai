@@ -1,6 +1,6 @@
 <% if @chat.previous_changes["topic"].present? %>
     <%= turbo_stream.replace "chat_topic" do %>
-        <h1 class="px-3"><%= @chat.topic %></h1>
+        <h1>Chat about: <%= @chat.topic %></h1>
     <% end %>
 <% end %>
 
