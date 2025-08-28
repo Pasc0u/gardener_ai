@@ -52,12 +52,14 @@ frank = User.create!(
 )
 
 frank.plants.create!(
+  nickname: "Snowball",
   species: "Hydrangea",
   image: "https://www.servus.com/storage/article/artikel-garten-gartenwissen-optimaler-standort-richtige-pflege-hortensien-sv-mi.jpg?impolicy=article_short_header",
   is_potted: false,
   location: "semi-shade"
 )
 frank.plants.create!(
+  nickname: "Bud",
   species: "Rhododendron",
   image: "https://www.garmundo.de/cdn/shop/files/roseumelegans1.webp?v=1718025412",
   is_potted: false,
