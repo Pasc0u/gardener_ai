@@ -7,12 +7,12 @@
 // General style
 $font-family-sans-serif: $body-font;
 $headings-font-family:   $headers-font;
-$body-bg:                $light-gray;
+$body-bg:                $brand-light-cream;
 $font-size-base:         1rem;
 
 // Colors
-$body-color: $gray;
-$primary:    $blue;
+$body-color: $brand-deep-green;
+$primary:    $brand-green;
 $success:    $green;
 $info:       $yellow;
 $danger:     $red;
@@ -26,3 +26,7 @@ $border-radius-xl:            .5rem;
 $border-radius-xxl:           1rem;
 
 // Override other variables below!
+// $brand-green: #71AFA4;
+// $brand-orange: #E8A233;
+// $brand-cream: #F8E1B3;
+// $brand-deep-green: #043930;
