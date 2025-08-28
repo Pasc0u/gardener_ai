@@ -29,6 +29,10 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
   end
 
+  def update
+    @plant = Plant.find(params[:id])
+  end
+
   def destroy
     @plant = Plant.find(params[:id])
     @plant.destroy

@@ -1,5 +1,5 @@
 <h1>Edit details of your plant</h1>
-
+<%= link_to "<< To details", plant_path(@plant)%>
 <%= simple_form_for(@plant) do |f| %>
     <%= f.input :species %>
     <%= f.input :nickname %>
