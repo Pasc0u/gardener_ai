@@ -1,9 +1,9 @@
 <%= simple_form_for(plant, html: { id: "plant-form" }) do |f| %>
-    <%= f.input :species, placeholder: "What species is your plant?" %>
     <%= f.input :nickname, placeholder: "Give your plant a nickname" %>
-    <%= f.input :age, placeholder: "Ruffly how old is your plant?" %>
-    <%= f.input :is_potted, label: "Is your plant potted?"  %>
+    <%= f.input :species, placeholder: "What species is your plant?" %>
     <%= f.input :location, collection: ["sunny", "semi-shade", "shade"], prompt: "Choose your plants location" %>
+    <%= f.input :age, placeholder: "Ruffly how old is your plant?" %>
+    <%= f.input :is_potted, label: "Is your plant potted?" %>
     <%= f.input :image, as: :file %>
-    <%= f.submit %>
+    <%= f.submit class: "btn-flat" %>
 <% end %>
