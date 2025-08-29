@@ -1,4 +1,4 @@
-<%= simple_form_for [chat, message] do |f| %>
+<%= simple_form_for [chat, message], html: { id: "plant-form" } do |f| %>
     <%= f.input :content, placeholder: "Ask a question", required: true, label: false %>
     <%= f.input :file, as: :file, label: false %>
     <%= f.submit "Ask", class: "btn btn-flat" %>
