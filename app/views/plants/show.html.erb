@@ -1,4 +1,7 @@
 <h1> <%= @plant.species %> </h1>
+<div>
+  <%= link_to "<< Back to all plants", plants_path%>
+</div>
 
 <div class='card mb-3 mt-3'>
       <img src='<%= @plant.image %>' alt='<%= @plant.species %>' style='height: 200px'>
@@ -34,5 +37,3 @@
       <p>There are no chats yet.</p>
     <% end %>
 </div>
-
-<%= link_to "Back to all plants", plants_path%>
