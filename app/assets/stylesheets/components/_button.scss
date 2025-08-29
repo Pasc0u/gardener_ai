@@ -17,11 +17,13 @@
   padding: 8px 24px;
   border-radius: 4px;
   background: $brand-green;
+  border: 1px solid $brand-green;
   transition: background 0.3s ease;
 }
 
 .btn-flat:hover {
   background: #56877e;
+  border: 1px solid #56877e;
   color: white;
 }
 
