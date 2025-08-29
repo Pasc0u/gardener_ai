@@ -1,0 +1,34 @@
+#plant-detail-column {
+    padding: 16px;
+    margin-top: 16px;
+    background-color: white;
+    img {
+        width: 100%;
+    }
+}
+
+#plant-detail-text {
+    margin-top: 16px;
+    .key {
+        color: #06393095;
+    }
+    .key__s {
+        margin-right: 20px; 
+    }
+    .key__l {
+        margin-right: 16px; 
+    }
+    .key__p {
+        margin-right: 28px; 
+    }
+}
+
+#chat-column {
+    margin-top: 8px;
+}
+
+#chat-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
