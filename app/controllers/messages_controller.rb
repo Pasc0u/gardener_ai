@@ -9,16 +9,22 @@ Answer concisely in markdown."
 
   def create
     @chat = Chat.find(params[:chat_id])
-    @message = Message.new(message_params)
-    @message.role = "user"
-    @message.chat = @chat
+    @message = Message.new(message_params.merge(role: "user", chat: @chat))
+    # @message.role = "user"
+    # @message.chat = @chat
     @plant = @chat.plant
-    if @message.valid?
+    if @message.valid? # with broadcasting don't call save anymore
       if @message.file.attached?
-        @message.save
+        @message.save # add about this line to a teacher
         process_file(@message.file)
       else
-        @chat.with_instructions(instructions).ask(@message.content)
+        @chat.with_instructions(instructions).ask(@message.content) do |chunk|
+          next if chunk.content.blank? # this will skip empty chunks
+          message = @chat.messages.last
+          message.content += chunk.content
+          broadcast_replace(message)
+        end
+        broadcast_replace(@chat.messages.last)
       end
       if @chat.topic == "unknown"
         @chat.generate_topic_from_first_message
@@ -36,6 +42,11 @@ Answer concisely in markdown."
   end
 
   private
+
+  def broadcast_replace(message)
+    Turbo::StreamsChannel.broadcast_replace_to(@chat, target: helpers.dom_id(message), partial: "messages/message",
+    locals: { message: message})
+  end
 
   def send_question(model: "", with: {})
     @LLMchat = RubyLLM.chat(model: model)
