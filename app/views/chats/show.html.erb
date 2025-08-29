@@ -5,7 +5,7 @@
 </div>
 <h1> for <%= @plant.species %></h1>
 
-<%= link_to "Go back to your plant", plant_path(@plant) %>
+<%= link_to '<i class="fa-solid fa-arrow-left"></i> back to your plant'.html_safe, plant_path(@plant) %>
 
 <div id="messages">
   <%= render "messages/messages", messages: @chat.messages %>
