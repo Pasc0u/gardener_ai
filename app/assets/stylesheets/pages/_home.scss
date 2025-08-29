@@ -1,6 +1,13 @@
-// Specific CSS for your home-page
+// Specific CSS for your home-pag
 
 h2 {
   font-size: 32px;
   font-weight: bold;
+}
+
+.screenshot {
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  img {
+    width: 100%;
+  }
 }
