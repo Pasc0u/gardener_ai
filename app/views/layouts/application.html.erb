@@ -15,7 +15,7 @@
     <%= render "shared/banner" if @test == true %>
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-8  mt-5">
+        <div class="<%= "col-8" if @test == false %> mt-5">
         <%= yield %>
         </div>
       </div>
