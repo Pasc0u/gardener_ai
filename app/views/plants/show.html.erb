@@ -42,7 +42,7 @@
         <p class="ms-2"><strong>Latest chats</strong></p>
         <ul id="chat-list">
           <% @plant.chats.each do |chat| %>
-            <li class="btn-flat-chat"><%= link_to chat.topic, chat_path(chat) %></li>
+            <li class="btn-ghost"><%= link_to chat.topic, chat_path(chat) %></li>
           <% end %>
         </ul>
         <% else %>
@@ -50,5 +50,5 @@
         <% end %>
     </div>
   </div>
-  
+
 </div>
