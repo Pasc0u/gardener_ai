@@ -19,7 +19,7 @@ class PlantsController < ApplicationController
     @plant = Plant.new(plant_params)
     @plant.user = current_user
     if @plant.save
-      redirect_to plant_path(@plant)
+      redirect_to plant_path(@plant), notice: "You successfully added your plant."
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class PlantsController < ApplicationController
   def update
     @plant = Plant.find(params[:id])
     if @plant.update(plant_params)
-      redirect_to plant_path(@plant)
+      redirect_to plant_path(@plant), notice: "You successfully edited your plant."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class PlantsController < ApplicationController
   def destroy
     @plant = Plant.find(params[:id])
     @plant.destroy
-    redirect_to plants_path, status: :see_other
+    redirect_to plants_path, alert: "Your plant was deleted.", status: :see_other
   end
 
   private
