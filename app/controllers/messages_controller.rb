@@ -48,13 +48,13 @@ Answer concisely in markdown."
 
   def plant_infos
     "Here are additional informations on the plant:
-    
+
     Species: #{@plant.species};
-    
+
     Location; #{@plant.location};
-    
+
     Is the plant potted? #{@plant.is_potted};
-    
+
     optional age: #{@plant.age}"
   end
 
