@@ -1,16 +1,17 @@
+
 <h1>Plants in my <%= @garden_name %> garden</h1>
 
 <% @plants.each do |plant| %>
-  <div class='card mb-3'>
+  <div class='card-product mb-3'>
       <img src='<%= plant.image %>' alt='<%= plant.species %>' style='height: 200px'>
-      <div class='p-2'>
-        <h4><%= link_to plant.nickname, plant_path(plant), class: "text-decoration-none"%></h4>
-        <i><%= plant.species %></i>
-        <p><span style='text-decoration: underline'>Details</span><br>
+      <div class='card-product-infos'>
+        <h2><%= link_to plant.nickname, plant_path(plant), class: "text-decoration-none"%></h2>
+        <p><%= plant.species %></p>
+        <p><span style='font-weight: bolder'>Details</span><br>
           Location: <%= plant.location %><br>
-          Potted? <%= plant.is_potted %>
-          <div><%= link_to "Delete plant", plant_path(plant), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete your #{plant.nickname}?"} %></div>
+          Potted? <%= plant.is_potted ? "Yes" : "No" %>
         </p>
+        <p class='card-product-delete'><%= link_to '<i class="fa-solid fa-trash-can"></i>'.html_safe, plant_path(plant), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete your #{plant.nickname}?"} %></p>
       </div>
   </div>
 <% end %>

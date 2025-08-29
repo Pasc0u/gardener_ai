@@ -12,9 +12,10 @@
 
   <body>
     <%= render "shared/navbar" %>
+    <%= render "shared/banner" if @test == true %>
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-4 mt-5">
+        <div class="col-8  mt-5">
         <%= yield %>
         </div>
       </div>
