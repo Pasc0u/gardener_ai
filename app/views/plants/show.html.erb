@@ -1,38 +1,54 @@
-<h1> <%= @plant.species %> </h1>
+<%= link_to '<i class="fa-solid fa-arrow-left"></i> back to your garden'.html_safe, plants_path, class: "ms-3 mb-5" %>
 
-<div class='card mb-3 mt-3'>
-      <img src='<%= @plant.image %>' alt='<%= @plant.species %>' style='height: 200px'>
-      <div class='p-2'>
+<div class="d-flex justify-content-between">
+
+  <div id="plant-detail-column" class="col-7">
+    <h1> <%= @plant.species %> </h1>
+    <img src='<%= @plant.image %>' alt='<%= @plant.species %>'>
+    <div id='plant-detail-text'>
+      <div class="d-flex justify-content-between">
         <h4><%= @plant.nickname%></h4>
-        <i><%= @plant.species %></i>
-        <div class='mt-2'>
-          <p><span style='font-weight: bolder'>Details</span><br>
-            Location: <%= @plant.location %><br>
-            Potted? <%= @plant.is_potted ? "Yes" : "No" %>
-            <div><%= link_to "Edit plant details", edit_plant_path%></div>
-            <div><%= link_to "Delete plant", plant_path(@plant), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete your #{@plant.nickname}?"} %></div>
-          </p>
+        <div class="d-flex mx-1">
+          <div class="pe-3"><%= link_to '<i class="fa-solid fa-pencil"></i>'.html_safe, edit_plant_path%></div>
+          <div><%= link_to '<i class="fa-solid fa-trash-can"></i>'.html_safe, plant_path(@plant), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete your #{@plant.nickname}?"} %></div>
         </div>
       </div>
-</div>
+      <div class="d-flex">
+        <p class="key key__s">Species: </p>
+        <p><em><%= @plant.species %></em></p>
+      </div>
+      <div id='plant-detail-text-details'>
+        <div class="d-flex">
+          <p class="key key__l">Location: </p>
+          <p><%= @plant.location %></p>
+        </div>
+        <div class="d-flex">
+          <p class="key key__p">Potted? </p>
+          <p><%= @plant.is_potted ? "Yes" : "No" %></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="mt-3">
-  <%= simple_form_for [@plant, @chat] do |f| %>
-    <%= f.submit "Ask Gardener for advice", class: "btn btn-flat" %>
-  <% end %>
-</div>
-
-<div class='mt-3'>
-  <% if @chats.any? %>
-    <p><strong>Latest chats</strong></p>
-    <ul class="list-group">
-      <% @plant.chats.each do |chat| %>
-        <li class="list-group-item"><%= link_to chat.topic, chat_path(chat) %></li>
+  <div id="chat-column" class="col-4">
+    <div class="mt-3">
+      <%= simple_form_for [@plant, @chat] do |f| %>
+        <%= f.submit "Ask Gardener for advice", class: "btn btn-flat" %>
       <% end %>
-    </ul>
-    <% else %>
-      <p>There are no chats yet.</p>
-    <% end %>
-</div>
+    </div>
 
-<%= link_to "Back to all plants", plants_path%>
+    <div class='mt-5'>
+      <% if @chats.any? %>
+        <p class="ms-2"><strong>Latest chats</strong></p>
+        <ul id="chat-list">
+          <% @plant.chats.each do |chat| %>
+            <li class="btn-flat-chat"><%= link_to chat.topic, chat_path(chat) %></li>
+          <% end %>
+        </ul>
+        <% else %>
+          <p class="ms-2">There are no chats yet.</p>
+        <% end %>
+    </div>
+  </div>
+  
+</div>
