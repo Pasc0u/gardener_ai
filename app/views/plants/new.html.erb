@@ -1,12 +1,5 @@
 <h1>Add a new plant to your garden</h1>
-<%= link_to "<< To my garden", plants_path%>
+<%= link_to '<i class="fa-solid fa-arrow-left"></i> back to your garden'.html_safe, plants_path%>
 
-<%= simple_form_for(@plant) do |f| %>
-    <%= f.input :species %>
-    <%= f.input :nickname %>
-    <%= f.input :age %>
-    <%= f.input :is_potted %>
-    <%= f.input :location %>
-    <%= f.input :image, as: :file %>
-    <%= f.submit %>
-<% end %>
+<%= render "form", plant: @plant %>
+
