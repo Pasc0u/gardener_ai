@@ -1,4 +1,4 @@
-<%= simple_form_for(plant) do |f| %>
+<%= simple_form_for(plant, html: { id: "plant-form" }) do |f| %>
     <%= f.input :species, placeholder: "What species is your plant?" %>
     <%= f.input :nickname, placeholder: "Give your plant a nickname" %>
     <%= f.input :age, placeholder: "Ruffly how old is your plant?" %>
