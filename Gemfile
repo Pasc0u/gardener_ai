@@ -57,6 +57,9 @@ gem "kramdown"
 gem "rouge"
 gem "kramdown-parser-gfm"
 
+# broadcast functionality WebSocket & ActionCable
+gem "solid_cable"
+
 # Gemfile
 gem "devise"
 
