@@ -9,16 +9,25 @@ Answer concisely in markdown."
 
   def create
     @chat = Chat.find(params[:chat_id])
-    @message = Message.new(message_params)
-    @message.role = "user"
-    @message.chat = @chat
+    @message = Message.new(message_params.merge(role: "user", chat: @chat))
     @plant = @chat.plant
-    if @message.valid?
+    if @message.valid? # with broadcasting don't call save anymore
       if @message.file.attached?
         @message.save
-        process_file(@message.file)
+        response = process_file(@message.file)
+        # This part of the code is hacky (made it with teacher's help)
+        message_response = Message.new(content: response.content, chat: @chat, role: "assistant")
+        message_response.save
+        broadcast_replace(@chat.messages.last)
+        # End of the hacky code
       else
-        @chat.with_instructions(instructions).ask(@message.content)
+        @chat.with_instructions(instructions).ask(@message.content) do |chunk|
+          next if chunk.content.blank? # this will skip empty chunks
+          message = @chat.messages.last
+          message.content += chunk.content
+          broadcast_replace(message)
+        end
+        broadcast_replace(@chat.messages.last)
       end
       if @chat.topic == "unknown"
         @chat.generate_topic_from_first_message
@@ -37,6 +46,11 @@ Answer concisely in markdown."
 
   private
 
+  def broadcast_replace(message)
+    Turbo::StreamsChannel.broadcast_replace_to(@chat, target: helpers.dom_id(message), partial: "messages/message",
+    locals: { message: message})
+  end
+
   def send_question(model: "", with: {})
     @LLMchat = RubyLLM.chat(model: model)
     @response = @LLMchat.with_instructions(instructions).ask(@message.content, with: with)
@@ -48,13 +62,13 @@ Answer concisely in markdown."
 
   def plant_infos
     "Here are additional informations on the plant:
-    
+
     Species: #{@plant.species};
-    
+
     Location; #{@plant.location};
-    
+
     Is the plant potted? #{@plant.is_potted};
-    
+
     optional age: #{@plant.age}"
   end
 
