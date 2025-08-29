@@ -10,13 +10,16 @@ Answer concisely in markdown."
   def create
     @chat = Chat.find(params[:chat_id])
     @message = Message.new(message_params.merge(role: "user", chat: @chat))
-    # @message.role = "user"
-    # @message.chat = @chat
     @plant = @chat.plant
     if @message.valid? # with broadcasting don't call save anymore
       if @message.file.attached?
-        @message.save # add about this line to a teacher
-        process_file(@message.file)
+        @message.save
+        response = process_file(@message.file)
+        # This part of the code is hacky (made it with teacher's help)
+        message_response = Message.new(content: response.content, chat: @chat, role: "assistant")
+        message_response.save
+        broadcast_replace(@chat.messages.last)
+        # End of the hacky code
       else
         @chat.with_instructions(instructions).ask(@message.content) do |chunk|
           next if chunk.content.blank? # this will skip empty chunks
